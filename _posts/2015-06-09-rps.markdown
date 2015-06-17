@@ -121,3 +121,6 @@ while game_winner == nil
  Finally the app finishes up by calling the determine game winner method (which takes both player objects as arguments) and then interpolates the answer (player one or two's name) in a string with '...wins!'
  
  Once one player has won the correct number of games (using a call to the determine match winner method), the program finishes with the name of the winner of allllll!
+ 
+ [gist of code][gist]https://gist.github.com/oobbles/1d1662bb30aab3c25258
+ 

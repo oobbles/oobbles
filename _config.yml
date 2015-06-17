@@ -1,10 +1,10 @@
 # Site settings
 title: oobbles
-email: oobbles@gmail.com
+email: oobbles@oobbles.com
 description: > # this means to ignore newlines until "baseurl:"
   oobbles oobbles oobbles
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://yourdomain.com" # the base hostname & protocol for your site
+url: "http://oobbles.com" # the base hostname & protocol for your site
 twitter_username: oobbles
 github_username:  oobbles
 
