@@ -1,0 +1,123 @@
+---
+layout: post
+title:  "Rock Paper Scissor"
+date:   2015-06-09 09:10:43
+categories: code
+---
+# Rock-Paper-Scissors-Lizard-Spock
+This program consists of three files to play the game "Rock, Paper, Scissors, Lizard, Spock." between two human players. `rps_player_class.rb` contains the player class, `rps_game_class.rb` contains the game class and `rps_driver.rb` calls the methods to run the whole show.
+
+##rps\_player_class.rb
+The entire file is devoted to the Player class.  The Player class has the attributes of `:name`, `:move`, and `:score`. The initialize method has two variable:
+ 
+  - name: The string that sets the player`s name.
+  - score: The Integer number of times the player has won a game.  Initialized at 0.
+This method returns its self.
+
+##rps\_game_class.rb
+`rps_game_class.rb` is the main file of the three. It is devoted to the Game class and contains the attributes `:total_number_of_games`, `:games_to_win`, `:game_count`, `:player1` and `:player2`.  The class initializes with two variables and returns its self:
+
+  - total\_number\_of_games: The Integer amount of how many games the player selects.
+  - game_count: The Integer number of times the game has been played. Initialized at 0.
+  
+#####get_name
+  ```ruby
+  def get_name(player_number, name)
+   if player_number == 1
+     then @player1 = Player.new(name)
+   else
+    @player2 = Player.new(name)
+   end
+  end
+  ```
+ Method gets arguments of player number and name to instantiate a new instance of the PlayerClass.  It returns an object from PlayerClass.  Takes the following variables:
+
+  - player_number: The Integer number that indicates which player.
+  - name: The String obtained from user input indicating their name.
+  
+#####get_move
+  ```ruby
+ def get_move(player_number, current_move)
+   if check_if_valid(current_move) == true
+     if player_number == 1
+       then
+       @player1.move = current_move
+     else
+       @player2.move = current_move
+     end
+   else
+    return false
+   end
+   return true
+ end
+   ```
+   Method gets arguments of player number and current move, checks if move is valid then assigns move to appropriate player. It returns an object from true. Takes the following variables:
+
+   - player_number: The Integer number that indicates which player.
+   - current_move: The String obtained from user input indicating their move choice.
+  
+#####check\_if_valid
+  ```ruby
+  def check_if_valid(player_move)
+    ["rock", "paper", "scissors", "spock", "lizard"].include?(player_move.downcase)
+  end
+  ```
+  Method used to check if move is valid.  It takes one variable, the player_move, which is the String of the move the player entered and returns a boolean.
+  
+
+#####determine\_game_winner
+  ```ruby
+  def determine_game_winner(p1, p2)
+    winning_choices = {spock: ["scissors", "rock"], paper: ["rock", "spock"], 
+    scissors: ["paper", "lizard"], rock: ["scissors", "lizard"], lizard: ["spock", "paper"]}
+    
+    if p1.move == p2.move
+      winner = Player.new("Neither")
+    elsif
+      winning_choices[p1.move.to_sym].include?(p2.move.to_s)
+      winner = p1
+    else
+      winner = p2
+    end
+    winner.score += 1
+    return winner
+  end
+  ```
+  Method gets arguments player objects, uses winning choices hash to determine who had the winning move or if there was a tie. Increments score. It takes two variables p1/p2 which are objects of the PlayerClass containing name, move and score.  It uses the hash to find and return the winner of the individual game. (If it is a tie, it instantiates a new player with the name "Neither").  After a winner is determined, the method adds a point to the score attribute of player.
+  
+#####determine\_match_winner
+  ```ruby
+    @games_to_win = ((total_number_of_games / 2.0).floor) + 1
+    if player1.score == games_to_win
+      return player1
+    elsif player2.score == games_to_win
+      return player2
+    else
+      return nil
+    end
+  end
+   ```
+   Method determines match winner comparing games to win attribute with the player object score. Returns winner, if there is one, else returns nil and they keep playing
+
+##rps_driver.rb
+This file runs the game by making method calls, sending in information and returning what comes back.  It begins with instantiating a new instance of the game class and passes it the number of games the player wants to play: `game1 = Game.new(gets.chomp.to_f)`  
+Then it asks for the name of each player and sets them to the Game class attributes mentioned earlier of player1 and player2.
+Next it enters a while loop to loop through as many games as necessary to meet the requirements of a best of x match. While this is happening, it also checks to see if the user input is a valid move.
+```ruby
+while game_winner == nil
+  puts "Make your move: #{game1.player1.name}" 
+    is_valid = game1.get_move(1, gets.chomp)
+  while is_valid == false
+    puts "Invalid entry: Please enter your move: "
+    is_valid = game1.get_move(1, gets.chomp)
+  end
+  puts " Please enter your move: #{game1.player2.name} "
+  is_valid = game1.get_move(2, gets.chomp)
+ while is_valid == false
+   puts "Invalid entry: Please enter your move: "
+   is_valid = game1.get_move(2, gets.chomp)
+ end
+ ```
+ Finally the app finishes up by calling the determine game winner method (which takes both player objects as arguments) and then interpolates the answer (player one or two's name) in a string with '...wins!'
+ 
+ Once one player has won the correct number of games (using a call to the determine match winner method), the program finishes with the name of the winner of allllll!
