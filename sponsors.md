@@ -9,6 +9,6 @@ permalink: /sponsors/
 <a href="http://isoftdata.com"><img alt="ISoft" src="http://www.isoftdata.com/images/isoftshadow.jpg"></a>
 
 
-<a href="http://midwestdevchat.com"><img alt="MWDC" src="http://midwestdevchat.com/assets/logo-d2c2e6bec61fff7a1e7cdc9efae07414.png">
+<a href="http://midwestdevchat.com"><img alt="MWDC" src="http://midwestdevchat.com/assets/logo-d2c2e6bec61fff7a1e7cdc9efae07414.png"></a>
   
   </center>

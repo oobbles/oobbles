@@ -122,5 +122,5 @@ while game_winner == nil
  
  Once one player has won the correct number of games (using a call to the determine match winner method), the program finishes with the name of the winner of allllll!
  
- [gist of code][gist]https://gist.github.com/oobbles/1d1662bb30aab3c25258
+ [gist of code](https://gist.github.com/oobbles/1d1662bb30aab3c25258)
  
